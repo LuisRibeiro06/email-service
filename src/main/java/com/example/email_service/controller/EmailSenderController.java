@@ -6,6 +6,7 @@ import com.example.email_service.exception.EmailServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class EmailSenderController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> sendEmail(EmailRequest emailRequest){
+    public ResponseEntity<Void> sendEmail(@RequestBody EmailRequest emailRequest){
         try {
             emailSenderService.sendEmail(emailRequest.getTo(), emailRequest.getSubject(), emailRequest.getBody());
             return ResponseEntity.ok().build();
